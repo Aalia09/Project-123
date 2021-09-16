@@ -1,3 +1,9 @@
+noseX = 0;
+noseY = 0;
+difference = 0;
+leftwristX= 0;
+rightwristX = 0;
+
 function setup()
 {
     video= createCapture(VIDEO);
@@ -17,12 +23,30 @@ function modelLoaded()
     console.log("PoseNet is initialized");
 }
 
-function draw()
-{
-    background("pink");
-}
 
 function gotPoses()
 {
-    console.log("Got poses");
+    if(results.length > 0)
+    {
+        console.log(results);
+        noseX = results[0].pose.nose.x;
+        noseY = results[0].pose.nose.y;
+        console.log("noseX = " + noseX + "noseY = " + noseY);
+
+        leftwristX = results[0].pose.leftWrist.x;
+        rightwristX = results[0].pose.rightWrist.x;
+        difference = floor(leftwristX - rightwristX);
+
+        console.log("leftwristX = " + leftwristX + "rightwristX = " + rightwristX + "difference = " + difference);
+    }
+}
+
+
+function draw()
+{
+    background("pink");
+    document.getElementById("font-size").innerHTML = "Font size of the text is = " + difference + "px";
+     stroke("black");
+     textSize(difference);
+    text("Aalia" , 30 , 300)
 }
