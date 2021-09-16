@@ -48,5 +48,5 @@ function draw()
     document.getElementById("font-size").innerHTML = "Font size of the text is = " + difference + "px";
      stroke("black");
      textSize(difference);
-    text("Aalia" , 30 , 300)
+    text("Aalia" , 50 , 300);
 }
